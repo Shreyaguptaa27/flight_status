@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #003366;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    height: 60px;
+}
+
+.slogan {
+    margin-left: 30px;
+    font-size: 2.5em; 
+    margin-bottom: 10px;
+}
+
+.header-buttons .btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.header-buttons .btn:hover {
+    background-color: #cccccc;
+}
+
+main {
+    background-image: url('images/img2.jpg');
+    background-size: cover;
+    height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+}
+
+.main-heading {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.neon-line {
+    height: 2px;
+    width: 100%;
+    background-color: neon;
+    margin: 10px 0;
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin-top: -70px;
+}
+
+.form-heading {
+    color: #003366;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-account-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #cccccc;
+    color: #003366;
+}
+
+footer {
+    background-color: #003366;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

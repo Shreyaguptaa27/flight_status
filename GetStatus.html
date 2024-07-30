@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Tracker</title>
+    <link rel="stylesheet" href="GetStatus.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.jpeg" alt="Logo" class="logo" href="FlightStatus.html">
+    </header>
+    
+    <main>
+        <div class="flight-container">
+            <img src="images/flight2.jpg" alt="Flight Image" class="flight-image">
+            <div class="flight-info-box">
+                <div class="flight-info">
+                    <h2>Flight Details</h2>
+                    <p>Flight Number: </p>
+                    <p>Airline: </p>
+                    <p>Date: </p>
+                    <p>Status: </p>
+                    <button class="get-updates-btn">Get Updates</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Made by Shreya</p>
+    </footer>
+
+    <!-- Popup Form -->
+    <div id="popup-form" class="popup-form">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h3>Register for Updates</h3>
+            <form id="update-form">
+                <label for="mobile">Enter Mobile:</label>
+                <input type="text" id="mobile" name="mobile" required><br>
+                <label for="email">Enter Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.querySelector('.get-updates-btn').addEventListener('click', () => {
+            document.getElementById('popup-form').style.display = 'flex';
+        });
+
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            document.getElementById('popup-form').style.display = 'none';
+        });
+
+        document.getElementById('update-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for registering!'); // You can add actual form submission logic here.
+            document.getElementById('popup-form').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

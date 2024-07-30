@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Tracker</title>
+    <link rel="stylesheet" href="FlightStatus.css">
+    <script>
+        function handleFormSubmission(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Perform form validation or other logic if needed
+            
+            // Redirect to the GetStatus.html page
+            window.location.href = 'GetStatus.html';
+            
+            // Clear the form fields
+            document.getElementById('search-form').reset();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="images/logo.jpeg" alt="Logo" class="logo">
+        <div class="header-buttons">
+            <a href="CreateAccount.html"><button class="btn">Create Account</button></a>
+            <a href="LoginPage.html"><button class="btn">Login</button></a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="background-image">
+            <h2 class="slogan">Stay Ahead, Fly Safe</h2>
+            <h1 class="main-heading">Flight Tracker</h1>
+            <div class="neon-line"></div>
+            <form id="search-form" action="GetStatus.html" method="get" onsubmit="handleFormSubmission(event)">
+                <div class="form-group">
+                    <label for="flight-number">Flight Id</label>
+                    <input type="text" id="flight-number" name="flight-number" pattern="[A-Za-z0-9\s]{1,10}" placeholder="e.g., 6E 2341" title="Enter a valid flight number with letters and numbers" required>
+                </div>
+                <div class="form-group">
+                    <label for="airline">Airline</label>
+                    <input type="text" id="airline" name="airline" pattern="[A-Za-z\s]{1,50}" placeholder="e.g., Indigo" title="Enter a valid airline name" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit" class="btn search-btn">Search</button>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Made by Shreya</p>
+    </footer>
+</body>
+</html>
