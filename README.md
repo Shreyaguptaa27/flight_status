@@ -14,7 +14,7 @@ Features
 Technologies Used
 
 - Frontend: HTML, CSS, JavaScript
-- Backend: Python
+- Backend: Node.js
 - Database: MongoDB
 - Notification System: Kafka
 
