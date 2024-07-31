@@ -1,80 +1,72 @@
 FlightStatus Website
-
 Overview
 
 The FlightStatus website is a powerful platform that provides users with real-time updates on flight statuses. It allows users to search for flight details, register for notifications, and stay informed about their flight's current status through email and SMS alerts.
-
 Features
 
-- Flight Search: Users can enter Flight ID, Airline, and Date to get detailed information about the flight.
-- User Account Management: Options to create an account or log in to access personalized features.
-- Real-Time Notifications: Users can register to receive real-time updates about their flight status via SMS and email.
-- User-Friendly Interface: A clean and intuitive design for easy navigation and interaction.
+    Flight Search: Users can enter Flight ID, Airline, and Date to get detailed information about the flight.
+    User Account Management: Options to create an account or log in to access personalized features.
+    Real-Time Notifications: Users can register to receive real-time updates about their flight status via SMS and email.
+    User-Friendly Interface: A clean and intuitive design for easy navigation and interaction.
 
 Technologies Used
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js
-- Database: MongoDB
-- Notification System: Kafka
+    Frontend: HTML, CSS, JavaScript
+    Backend: Node.js
+    Database: MongoDB
+    Notification System: Kafka
 
 Live Project
 
-You can view the live project at: [FlightStatus Live Demo](https://shreyaguptaa27.github.io/flight_status/)
-
+You can view the live project at: FlightStatus Live Demo
 Installation
 
 To run this project locally:
 
-1. Clone the Repository
+    Clone the Repositories
 
-   ```bash
-   git clone https://github.com/username/repository-name.git
-   cd repository-name
+    Clone the frontend and backend repositories:
 
-2. Set Up the Backend
+    bash
 
-Ensure you have Python installed. Navigate to the backend directory and install required packages:
+git clone https://github.com/Shreyaguptaa27/flight_status.git
+git clone https://github.com/Shreyaguptaa27/flightstatus-backend.git
+
+Navigate to each directory:
 
 bash
 
-pip install -r requirements.txt
+cd flight_status
+cd flightstatus-backend
+
+Set Up the Backend
+
+Ensure you have Node.js installed. Navigate to the backend directory and install required packages:
+
+bash
+
+cd flightstatus-backend
+npm install
 
 Start the backend server:
 
 bash
 
-    python app.py
+npm start
 
-3. Set Up the Frontend
+The server will be running at http://localhost:3000 (or another port if configured differently).
 
-    Navigate to the frontend directory and open the index.html file in your browser.
+Set Up the Frontend
 
-4. Database Setup
+Navigate to the frontend directory and open the index.html file in your browser:
 
-    Make sure MongoDB is installed and running. Configure the database connection in the backend code.
+bash
 
-Usage
+    cd flight_status
 
-    Access the Website
+    Open index.html in your preferred web browser.
 
-    Open your browser and navigate to http://localhost:8000 to view the website locally.
+    Database Setup
 
-    Search for Flights
-
-    Enter the Flight ID, Airline, and Date in the search form and click "Search" to get flight details.
-
-    Register for Notifications
-
-    Click on "Get Updates" to open the registration pop-up. Enter your phone number and email to receive notifications.
-
-Contributing
-
-Contributions are welcome! To contribute:
-
-    Fork the repository.
-    Create a new branch (git checkout -b feature-branch).
-    Commit your changes (git commit -am 'Add new feature').
-    Push to the branch (git push origin feature-branch).
-    Create a new Pull Request.
+    Make sure MongoDB is installed and running. You can restore the database backup using MongoDB tools. Adjust the database connection settings in the backend code as needed.
 
