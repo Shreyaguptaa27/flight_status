@@ -72,3 +72,6 @@ bash
 
     Make sure MongoDB is installed and running. You can restore the database backup using MongoDB tools. Adjust the database connection settings in the backend code as needed.
 
+Mock Data to test 
+  flight_id: "6E 2344"
+  airline: "Indigo"
