@@ -19,6 +19,8 @@ Technologies Used
 Live Project
 
 You can view the live project at:  https://shreyaguptaa27.github.io/flight_status/
+
+
 Installation
 
 To run this project locally:
