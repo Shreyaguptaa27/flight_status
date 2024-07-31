@@ -6,16 +6,31 @@
     <title>Flight Tracker</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        function handleFormSubmission(event) {
-            event.preventDefault(); // Prevent the default form submission
+        async function handleFormSubmission(event) {
+            event.preventDefault(); 
+    
             
-            // Perform form validation or other logic if needed
-            
-            // Redirect to the GetStatus.html page
-            window.location.href = 'GetStatus.html';
-            
-            // Clear the form fields
-            document.getElementById('search-form').reset();
+            const flightId = document.getElementById('flight-id').value;
+    
+            try {
+                
+                const response = await fetch(`http://localhost:3000/flight?flightId=${encodeURIComponent(flightId)}`);
+                const data = await response.json();
+    
+                if (response.ok) {
+                   
+                    localStorage.setItem('flightData', JSON.stringify(data));
+
+                    document.getElementById('search-form').reset();
+                    
+                   
+                    window.location.href = 'GetStatus.html';
+                } else {
+                    console.error('Error response:', data.message || 'Flight not found');
+                }
+            } catch (error) {
+                console.error('Error fetching flight data:', error);
+            }
         }
     </script>
 </head>
@@ -33,10 +48,10 @@
             <h2 class="slogan">Stay Ahead, Fly Safe</h2>
             <h1 class="main-heading">Flight Tracker</h1>
             <div class="neon-line"></div>
-            <form id="search-form" action="GetStatus.html" method="get" onsubmit="handleFormSubmission(event)">
+            <form id="search-form" onsubmit="handleFormSubmission(event)">
                 <div class="form-group">
-                    <label for="flight-number">Flight Id</label>
-                    <input type="text" id="flight-number" name="flight-number" pattern="[A-Za-z0-9\s]{1,10}" placeholder="e.g., 6E 2341" title="Enter a valid flight number with letters and numbers" required>
+                    <label for="flight-id">Flight Id</label>
+                    <input type="text" id="flight-id" name="flight-id" pattern="[A-Za-z0-9\s]{1,10}" placeholder="e.g., 6E 2341" title="Enter a valid flight number with letters and numbers" required>
                 </div>
                 <div class="form-group">
                     <label for="airline">Airline</label>

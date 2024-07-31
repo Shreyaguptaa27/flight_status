@@ -3,63 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Tracker</title>
-    <link rel="stylesheet" href="GetStatus.css">
+    <title>Flight Updates</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            
+            const flightData = localStorage.getItem('flightData');
+            
+            if (flightData) {
+                const data = JSON.parse(flightData);
+                
+                
+                document.getElementById('flight-info').innerHTML = `
+                    <h2>Flight Information</h2>
+                    <p><strong>Flight ID:</strong> ${data.flight_id}</p>
+                    <p><strong>Airline:</strong> ${data.airline}</p>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Departure Gate:</strong> ${data.departure_gate}</p>
+                    <p><strong>Arrival Gate:</strong> ${data.arrival_gate}</p>
+                    <p><strong>Scheduled Departure:</strong> ${new Date(data.scheduled_departure).toLocaleString()}</p>
+                    <p><strong>Scheduled Arrival:</strong> ${new Date(data.scheduled_arrival).toLocaleString()}</p>
+                    <p><strong>Actual Departure:</strong> ${new Date(data.actual_departure).toLocaleString()}</p>
+                    <p><strong>Actual Arrival:</strong> ${new Date(data.actual_arrival).toLocaleString()}</p>
+                `;
+                
+                
+                localStorage.removeItem('flightData');
+            } else {
+                document.getElementById('flight-info').innerHTML = '<p>No flight data available.</p>';
+            }
+        };
+
+        
+        function showModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        
+        async function handleRegistration(event) {
+            event.preventDefault(); 
+           
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+
+            try {
+               
+                const response = await fetch('http://localhost:3000/register-updates', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ mobile, email })
+                });
+
+                if (response.ok) {
+                   
+                    alert('Registration successful');
+                    closeModal(); 
+                } else {
+                   
+                    console.error('Error response:', await response.text());
+                }
+            } catch (error) {
+                console.error('Error registering updates:', error);
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
-        <img src="images/logo.jpeg" alt="Logo" class="logo" href="FlightStatus.html">
+        <img src="images/logo.jpeg" alt="Logo" class="logo">
+        <div class="header-buttons">
+            <a href="index.html"><button class="btn">Back to Search</button></a>
+            <a href="CreateAccount.html"><button class="btn">Create Account</button></a>
+            <a href="LoginPage.html"><button class="btn">Login</button></a>
+        </div>
     </header>
     
     <main>
-        <div class="flight-container">
-            <img src="images/flight2.jpg" alt="Flight Image" class="flight-image">
-            <div class="flight-info-box">
-                <div class="flight-info">
-                    <h2>Flight Details</h2>
-                    <p>Flight Number: </p>
-                    <p>Airline: </p>
-                    <p>Date: </p>
-                    <p>Status: </p>
-                    <button class="get-updates-btn">Get Updates</button>
-                </div>
+        <div class="background-image">
+            <div id="flight-info">
+                <!-- Flight information will be displayed here -->
             </div>
+            <button class="btn" onclick="showModal()">Get Updates</button>
         </div>
     </main>
     
-    <footer>
-        <p>Made by Shreya</p>
-    </footer>
-
-    <!-- Popup Form -->
-    <div id="popup-form" class="popup-form">
-        <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <h3>Register for Updates</h3>
-            <form id="update-form">
-                <label for="mobile">Enter Mobile:</label>
-                <input type="text" id="mobile" name="mobile" required><br>
-                <label for="email">Enter Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                <button type="submit">Register</button>
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Register for Updates</h2>
+            <form id="registration-form" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
             </form>
         </div>
     </div>
     
-    <script>
-        document.querySelector('.get-updates-btn').addEventListener('click', () => {
-            document.getElementById('popup-form').style.display = 'flex';
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', () => {
-            document.getElementById('popup-form').style.display = 'none';
-        });
-
-        document.getElementById('update-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for registering!'); // You can add actual form submission logic here.
-            document.getElementById('popup-form').style.display = 'none';
-        });
-    </script>
+    <footer>
+        <p>Made by Shreya</p>
+    </footer>
 </body>
 </html>
